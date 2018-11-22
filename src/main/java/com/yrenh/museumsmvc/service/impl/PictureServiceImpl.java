@@ -2,6 +2,8 @@ package com.yrenh.museumsmvc.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.yrenh.museumsmvc.entity.Picture;
 import com.yrenh.museumsmvc.service.PictureService;
 
 @Service
+@Transactional
 public class PictureServiceImpl implements PictureService {
 
 	@Autowired
