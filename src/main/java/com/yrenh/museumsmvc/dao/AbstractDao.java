@@ -11,7 +11,7 @@ public class AbstractDao<E> implements DAO<E>{
 	private SessionFactory sessionFactory;
 	private Class<E> clazz;
 	
-	protected void setClass(Class<E> clazz) {
+	public AbstractDao(Class<E> clazz) {
 		this.clazz = clazz;
 	}
 	

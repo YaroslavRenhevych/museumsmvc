@@ -7,7 +7,7 @@ import com.yrenh.museumsmvc.entity.Visitor;
 public class VisitorDaoImpl extends AbstractDao<Visitor> implements VisitorDao {
 	
 	public VisitorDaoImpl() {
-		setClass(Visitor.class);
+		super(Visitor.class);
 	}
 	
 }

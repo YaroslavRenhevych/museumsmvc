@@ -7,6 +7,6 @@ import com.yrenh.museumsmvc.entity.Painter;
 public class PainterDaoImpl extends AbstractDao<Painter> implements PainterDao {
 	
 	public PainterDaoImpl() {
-		setClass(Painter.class);
+		super(Painter.class);
 	}
 }
