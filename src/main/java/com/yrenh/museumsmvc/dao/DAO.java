@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface DAO<E> {
 	
-	Long save(E entity);
+	void save(E entity);
 	
 	E find(Long id);
 	

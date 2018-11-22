@@ -3,14 +3,12 @@ package com.yrenh.museumsmvc.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.GenericTypeResolver;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class AbstractDao<E> implements DAO<E>{
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager entityManager;
 	private Class<E> clazz;
 	
 	public AbstractDao() {
@@ -18,34 +16,30 @@ public class AbstractDao<E> implements DAO<E>{
 		clazz = (Class<E>)type.getActualTypeArguments()[0];
 	}
 	
-	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
-	
 	@Override
-	public Long save(E entity) {
-		return (Long)getSession().save(entity);
+	public void save(E entity) {
+		entityManager.persist(entity);;
 	}
 
 	@Override
 	public E find(Long id) {
-		return getSession().get(clazz, id);
+		return entityManager.find(clazz, id);
 	}
 
 	@Override
 	public void update(E entity) {
-		getSession().update(entity);
+		entityManager.merge(entity);
 	}
 
 	@Override
 	public void delete(E entity) {
-		getSession().delete(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override
 	public List<E> getAll() {
-		return getSession().createQuery("from " + clazz.getName(), clazz).list();
+		return entityManager.createQuery("SELECT entities FROM " + clazz.getName() + " entities", clazz)
+					.getResultList();
 	}
-	
 	
 }
