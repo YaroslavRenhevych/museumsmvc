@@ -1,18 +1,21 @@
 package com.yrenh.museumsmvc.dao;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.GenericTypeResolver;
 
 public class AbstractDao<E> implements DAO<E>{
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Class<E> clazz;
 	
-	public AbstractDao(Class<E> clazz) {
-		this.clazz = clazz;
+	public AbstractDao() {
+		ParameterizedType type = (ParameterizedType)this.getClass().getGenericSuperclass();
+		clazz = (Class<E>)type.getActualTypeArguments()[0];
 	}
 	
 	protected Session getSession() {

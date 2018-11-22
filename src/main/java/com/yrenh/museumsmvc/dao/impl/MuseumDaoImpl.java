@@ -6,8 +6,4 @@ import com.yrenh.museumsmvc.entity.Museum;
 
 public class MuseumDaoImpl extends AbstractDao<Museum> implements MuseumDao {
 	
-	public MuseumDaoImpl() {
-		super(Museum.class);
-	}
-	
 }

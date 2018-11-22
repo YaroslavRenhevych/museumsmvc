@@ -6,8 +6,4 @@ import com.yrenh.museumsmvc.entity.Picture;
 
 public class PictureDaoImpl extends AbstractDao<Picture> implements PictureDao {
 	
-	public PictureDaoImpl() {
-		super(Picture.class);
-	}
-	
 }
