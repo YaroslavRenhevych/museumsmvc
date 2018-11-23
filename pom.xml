@@ -1,21 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.yrenh</groupId>
-  <artifactId>museumsmvc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>museumsmvc2</artifactId>
   <packaging>war</packaging>
-
-  <name>museumsmvc</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>museumsmvc2 Maven Webapp</name>
   <url>http://maven.apache.org</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
+  
   <dependencies>
-  	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+  <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 	<dependency>
 	    <groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-core</artifactId>
@@ -89,4 +83,5 @@
       </plugin>
     </plugins>
   </build>
+    
 </project>

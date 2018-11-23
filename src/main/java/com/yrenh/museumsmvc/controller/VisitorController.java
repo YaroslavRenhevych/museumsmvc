@@ -11,28 +11,29 @@ import com.yrenh.museumsmvc.service.VisitorService;
 public class VisitorController {
 	
 	@Autowired
-	private VisitorService visitorService; 
+	private VisitorService visitorService;
 	
 	@RequestMapping(value = "/hello")
 	public String hello() {
-		System.out.println("hello");
+		System.out.println("hello1");
 		return "createVisitor";
 	}
 	
 	@RequestMapping(value = "/")
 	public String hello2() {
-		System.out.println("hello");
+		System.out.println("hello2");
 		return "createVisitor";
 	}
 	
 	@RequestMapping(value = "")
 	public String hello3() {
-		System.out.println("hello");
+		System.out.println("hello3");
 		return "createVisitor";
 	}
 	
 	@GetMapping("/visitors/create")
 	public String createVisitorView() {
+		System.out.println("create visitor");
 		return "createVisitor";
 	}
 }

@@ -13,7 +13,7 @@ public class WebContextConfig {
 	@Bean
 	ViewResolver viewResoler() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("WEB-INF/view");
+		resolver.setPrefix("/WEB-INF/view/");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}

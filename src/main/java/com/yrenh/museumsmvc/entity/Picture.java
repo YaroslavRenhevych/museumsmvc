@@ -24,7 +24,7 @@ public class Picture {
 	@ManyToOne
 	@JoinColumn(name = "museum_id")
 	private Museum museum;
-	@Column
+	@Column(name="creation_date")
 	private LocalDate creationDate;
 	
 	public Picture() {

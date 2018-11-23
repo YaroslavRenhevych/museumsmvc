@@ -11,7 +11,7 @@ public class PictureController {
 	@Autowired
 	private PictureService painerService;
 	
-	@GetMapping("/painters/create")
+	@GetMapping("/pictures/create")
 	public String painterServiceView() {
 		return "createPainter";
 	}
