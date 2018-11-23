@@ -9,21 +9,25 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-public class AppInitializer implements WebApplicationInitializer{
+import com.yrenh.museumsmvc.config.RootContextConfig;
+import com.yrenh.museumsmvc.config.WebContextConfig;
 
-	public void onStartup(ServletContext servletContext) throws ServletException {
+public class AnnotationWebAppInitializer implements WebApplicationInitializer {
+	@Override
+	public void onStartup(ServletContext servletContext) {
+		System.out.println("startup()");
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.register();//TODO add root context
+		rootContext.register(RootContextConfig.class);
 		
 		servletContext.addListener(new ContextLoaderListener(rootContext));
 		
 		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
-		webContext.register();//TODO add config class
+		webContext.register(WebContextConfig.class);
 		
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(webContext);
 		ServletRegistration.Dynamic registration = servletContext.addServlet("app", dispatcherServlet);
 		registration.setLoadOnStartup(1);
-		registration.addMapping("/app/*");
+		registration.addMapping("/");
 	}
 
 }

@@ -5,7 +5,7 @@
   <groupId>com.yrenh</groupId>
   <artifactId>museumsmvc</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>museumsmvc</name>
   <url>http://maven.apache.org</url>
@@ -62,5 +62,23 @@
 	    <artifactId>spring-orm</artifactId>
 	    <version>5.1.1.RELEASE</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-web</artifactId>
+	    <version>5.1.1.RELEASE</version>
+	</dependency>
+	
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
