@@ -2,8 +2,14 @@ package com.yrenh.museumsmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.yrenh.museumsmvc.entity.Museum;
 import com.yrenh.museumsmvc.service.MuseumService;
 
 @Controller
@@ -12,7 +18,16 @@ public class MuseumController {
 	private MuseumService museumServie;
 	
 	@GetMapping("/museums/create")
-	public String createMuseumView() {
+	public ModelAndView showMuseumView() {
+		return new ModelAndView("createMuseum","museum", new Museum());
+	}
+	
+	@PostMapping("/museums/create")
+	public String createMuseum(@ModelAttribute("museum")Museum museum,
+		BindingResult result, ModelMap model) {
+		System.out.println("create museum");
+		this.museumServie.create(museum);
+		
 		return "createMuseum";
 	}
 }

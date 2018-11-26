@@ -49,7 +49,7 @@ public class RootContextConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/museumdb");
-		dataSource.setUsername("rootdd");
+		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		return dataSource;
 	}
