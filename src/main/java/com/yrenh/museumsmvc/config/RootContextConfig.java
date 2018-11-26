@@ -44,7 +44,7 @@ public class RootContextConfig {
 		return transactionManager;
 	}
 	
-	@Bean(name = "dataSource")
+	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
