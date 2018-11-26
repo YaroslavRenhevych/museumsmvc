@@ -31,7 +31,6 @@ public class MuseumDaoTest {
 	
 	@Test
 	@Transactional
-	@Rollback
 	public void addMuseumTest() {
 		String expectedTitle = "museum1";
 		String address = "address";
@@ -48,7 +47,6 @@ public class MuseumDaoTest {
 	
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	@Transactional
-	@Rollback
 	public void addMuseumWithIdTest() {
 		String expectedTitle = "museum1";
 		String address = "address";
@@ -66,7 +64,6 @@ public class MuseumDaoTest {
 	
 	@Test
 	@Transactional
-	@Rollback
 	public void updateMuseumTest() {
 		String oldTitle = "oldTitle";
 		String newTitle = "newTitle";
@@ -86,7 +83,6 @@ public class MuseumDaoTest {
 	
 	@Test
 	@Transactional
-	@Rollback
 	public void deleteMuseumTest() {
 		String title = "Title";
 		String address = "Address";
