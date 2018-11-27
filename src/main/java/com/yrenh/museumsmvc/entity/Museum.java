@@ -37,25 +37,6 @@ public class Museum {
 		super();
 	}
 
-	public List<Picture> getPictures() {
-		return pictures;
-	}
-
-	public List<Visitor> getVisitors() {
-		return visitors;
-	}
-
-
-	public void setPictures(List<Picture> pictures) {
-		this.pictures = pictures;
-	}
-
-
-	public void setVisitors(List<Visitor> visitors) {
-		this.visitors = visitors;
-	}
-
-
 	public Long getId() {
 		return id;
 	}
@@ -78,6 +59,14 @@ public class Museum {
 
 	public LocalDate getFoundingDate() {
 		return foundingDate;
+	}
+
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public List<Visitor> getVisitors() {
+		return visitors;
 	}
 
 	public void setId(Long id) {
@@ -103,6 +92,12 @@ public class Museum {
 	public void setFoundingDate(LocalDate foundingDate) {
 		this.foundingDate = foundingDate;
 	}
-	
-	
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
+	public void setVisitors(List<Visitor> visitors) {
+		this.visitors = visitors;
+	}
 }
