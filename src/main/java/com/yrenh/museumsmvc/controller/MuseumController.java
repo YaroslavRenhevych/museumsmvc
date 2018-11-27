@@ -23,11 +23,9 @@ public class MuseumController {
 	}
 	
 	@PostMapping("/museums/create")
-	public String createMuseum(@ModelAttribute("museum")Museum museum,
+	public ModelAndView createMuseum(@ModelAttribute("museum")Museum museum,
 		BindingResult result, ModelMap model) {
-		System.out.println("create museum");
 		this.museumServie.create(museum);
-		
-		return "createMuseum";
+		return new ModelAndView("createMuseum", "museum", new Museum());
 	}
 }
