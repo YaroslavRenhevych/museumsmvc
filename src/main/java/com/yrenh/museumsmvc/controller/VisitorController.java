@@ -1,7 +1,9 @@
 package com.yrenh.museumsmvc.controller;
 
+import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -42,17 +44,31 @@ public class VisitorController {
 	
 	@PostMapping("/visitors/create")
 	public ModelAndView createVisitor(@ModelAttribute Visitor visitor,
-			BindingResult result, ModelMap map, Date birthDate) {
+			BindingResult result, ModelMap map,  @DateTimeFormat(iso = ISO.DATE) LocalDate birthDate) {
 		System.out.println("argument date: "+birthDate);
 		System.out.println("date: "+visitor.getBirthDate());
 		System.out.println("museums: "+visitor.getMuseums());
 		visitorService.create(visitor);
 		return new ModelAndView("redirect:/app/visitors/create", "visitor", new Visitor());
 	}
-	/*@InitBinder 
+	@InitBinder 
 	public void dataBinding(WebDataBinder binder) { 
+		System.out.println("init Editor at visitor controller");
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd"); 
 	    CustomDateEditor dateEditor = new CustomDateEditor(dateFormat, true); 
-	    binder.registerCustomEditor(LocalDate.class, dateEditor); 
-	}*/
+	    binder.registerCustomEditor(Date.class, dateEditor);
+	    
+		binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+		      @Override
+		      public void setAsText(String text) throws IllegalArgumentException {
+		    	  System.out.println("setasString:"+LocalDate.parse(text, DateTimeFormatter.ISO_DATE));
+		    	  super.setValue(LocalDate.parse(text));
+		      }
+		      @Override
+		    public String getAsText() {
+		    	
+		    	return super.getValue().toString();
+		    }
+		});
+	}
 }
