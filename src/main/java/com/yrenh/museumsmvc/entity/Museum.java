@@ -3,6 +3,7 @@ package com.yrenh.museumsmvc.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "Museum")
@@ -26,11 +30,12 @@ public class Museum {
 	private String phone;
 	@Column()
 	private String site;
+	@DateTimeFormat(iso = ISO.DATE, pattern="MM/dd/yyyy")
 	@Column(name = "founding_date")
 	private LocalDate foundingDate;
 	@OneToMany(mappedBy = "museum")
 	private List<Picture> pictures;
-	@ManyToMany(mappedBy = "museums")
+	@ManyToMany(mappedBy = "museums", cascade = {CascadeType.ALL})
 	private List<Visitor> visitors;
 	
 	public Museum() {
@@ -99,5 +104,8 @@ public class Museum {
 
 	public void setVisitors(List<Visitor> visitors) {
 		this.visitors = visitors;
+	}
+	public String getIdAsString() {
+		return new Long(id).toString();
 	}
 }

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,6 +35,21 @@
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
+                <tr>
+			        <td>Museums:</td>
+			        <td>
+			        	<%-- <form:select path="museums" multiple="true" items="${museumList}" itemLabel="title" itemValue="id"/> --%>
+				        <form:checkboxes path="museums" items="${museumList}" itemValue="id" itemLabel="title"/>
+				        <%-- <form:checkboxes path = "museums" items = "${museumList}" /> --%>
+		        	</td>
+		        	
+				    <%-- <c:forEach items="${museumList}" varStatus="vs">
+				        <div >
+				        
+				        <div ><form:checkbox path="museums[${vs.index}].id" value="${museumList[vs.index].id}" itemValue="id"/>
+				        <form:hidden path="museums[${vs.index}].id" />
+				    </c:forEach> --%>
+			    </tr>
             </table>
         </form:form>
     </body>

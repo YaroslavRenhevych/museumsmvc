@@ -1,6 +1,8 @@
 package com.yrenh.museumsmvc.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +15,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "Visitor",
 		uniqueConstraints = @UniqueConstraint(columnNames = { "first_name", "last_name" }))
@@ -28,6 +33,7 @@ public class Visitor {
 	private String email;
 	@Column
 	private String phone;
+	//@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
 	@ManyToMany
@@ -36,7 +42,7 @@ public class Visitor {
 			joinColumns = { @JoinColumn(name = "visitor_id") },
 			inverseJoinColumns = { @JoinColumn(name = "museum_id") }
 	)
-	private List<Museum> museums;
+	private List<Museum> museums = new LinkedList<Museum>();
 	
 	public Visitor() {
 		super();
