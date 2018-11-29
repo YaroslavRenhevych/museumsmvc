@@ -35,13 +35,15 @@ public class Museum {
 	private LocalDate foundingDate;
 	@OneToMany(mappedBy = "museum")
 	private List<Picture> pictures;
-	@ManyToMany(mappedBy = "museums", cascade = {CascadeType.ALL})
+	@ManyToMany(mappedBy = "museums")
 	private List<Visitor> visitors;
 	
-	public Museum() {
-		super();
+	public Museum() {}
+	
+	public Museum(String id) {
+		this.id = Long.parseLong(id);
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

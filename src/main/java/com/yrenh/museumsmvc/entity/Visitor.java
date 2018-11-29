@@ -42,10 +42,9 @@ public class Visitor {
 			joinColumns = { @JoinColumn(name = "visitor_id") },
 			inverseJoinColumns = { @JoinColumn(name = "museum_id") }
 	)
-	private List<Museum> museums = new LinkedList<Museum>();
+	private List<Museum> museums;
 	
 	public Visitor() {
-		super();
 	}
 	
 	public List<Museum> getMuseums() {
