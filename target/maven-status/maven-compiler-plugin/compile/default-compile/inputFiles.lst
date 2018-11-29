@@ -11,6 +11,7 @@ D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\entity\Museum.java
 D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\entity\Painter.java
 D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\dao\impl\PictureDaoImpl.java
 D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\dao\PictureDao.java
+D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\converter\StringToLocalDateConverter.java
 D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\dao\AbstractDao.java
 D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\config\RootContextConfig.java
 D:\museumsmvc\src\main\java\com\yrenh\museumsmvc\service\impl\MuseumServiceImpl.java

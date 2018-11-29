@@ -44,14 +44,15 @@ public class VisitorController {
 	
 	@PostMapping("/visitors/create")
 	public ModelAndView createVisitor(@ModelAttribute Visitor visitor,
-			BindingResult result, ModelMap map,  @DateTimeFormat(iso = ISO.DATE) LocalDate birthDate) {
-		System.out.println("argument date: "+birthDate);
+			BindingResult result, ModelMap map  
+			/*@DateTimeFormat(iso = ISO.DATE) LocalDate birthDate*/) {
+		//System.out.println("argument date: "+birthDate);
 		System.out.println("date: "+visitor.getBirthDate());
-		System.out.println("museums: "+visitor.getMuseums());
-		visitorService.create(visitor);
+		//System.out.println("museums: "+visitor.getMuseums());
+		//visitorService.create(visitor);
 		return new ModelAndView("redirect:/app/visitors/create", "visitor", new Visitor());
 	}
-	@InitBinder 
+	/*@InitBinder 
 	public void dataBinding(WebDataBinder binder) { 
 		System.out.println("init Editor at visitor controller");
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd"); 
@@ -60,15 +61,11 @@ public class VisitorController {
 	    
 		binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
 		      @Override
-		      public void setAsText(String text) throws IllegalArgumentException {
+		      public void setAsText(String text) {
 		    	  System.out.println("setasString:"+LocalDate.parse(text, DateTimeFormatter.ISO_DATE));
 		    	  super.setValue(LocalDate.parse(text));
 		      }
-		      @Override
-		    public String getAsText() {
-		    	
-		    	return super.getValue().toString();
-		    }
+		      
 		});
-	}
+	}*/
 }

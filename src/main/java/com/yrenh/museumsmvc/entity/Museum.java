@@ -30,7 +30,7 @@ public class Museum {
 	private String phone;
 	@Column()
 	private String site;
-	@DateTimeFormat(iso = ISO.DATE, pattern="MM/dd/yyyy")
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "founding_date")
 	private LocalDate foundingDate;
 	@OneToMany(mappedBy = "museum")

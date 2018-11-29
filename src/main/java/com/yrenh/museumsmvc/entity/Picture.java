@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "Picture")
 public class Picture {
@@ -24,6 +27,7 @@ public class Picture {
 	@ManyToOne
 	@JoinColumn(name = "museum_id")
 	private Museum museum;
+	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name="creation_date")
 	private LocalDate creationDate;
 	

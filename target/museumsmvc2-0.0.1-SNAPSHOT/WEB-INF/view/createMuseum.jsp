@@ -16,16 +16,20 @@
                     <td><form:input path="title"/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="address">address</form:label></td>
+                    <td><form:label path="address">Address:</form:label></td>
                     <td><form:input path="address"/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="phone">phone</form:label></td>
+                    <td><form:label path="phone">Phone:</form:label></td>
                     <td><form:input path="phone"/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="site">site</form:label></td>
+                    <td><form:label path="site">Web-site:</form:label></td>
                     <td><form:input path="site"/></td>
+                </tr>
+                <tr>
+                	<td><form:label path="foundingDate">Founding date:</form:label></td>
+                    <td><form:input type="date" path="foundingDate" /></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Submit"/></td>

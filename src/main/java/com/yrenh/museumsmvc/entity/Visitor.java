@@ -33,7 +33,7 @@ public class Visitor {
 	private String email;
 	@Column
 	private String phone;
-	//@DateTimeFormat(iso=ISO.DATE)
+	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
 	@ManyToMany
