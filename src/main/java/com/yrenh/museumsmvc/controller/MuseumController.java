@@ -1,16 +1,10 @@
 package com.yrenh.museumsmvc.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,14 +25,7 @@ public class MuseumController {
 	@PostMapping("/museums/create")
 	public ModelAndView createMuseum(@ModelAttribute("museum")Museum museum,
 		BindingResult result, ModelMap model) {
-		System.out.println(museum.getFoundingDate());
 		this.museumServie.create(museum);
-		return new ModelAndView("createMuseum", "museum", new Museum());
+		return new ModelAndView("redirect:/app/museums/create", "museum", new Museum());
 	}
-	/*@InitBinder 
-	public void dataBinding(WebDataBinder binder) { 
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); 
-	    CustomDateEditor dateEditor = new CustomDateEditor(dateFormat, true); 
-	    binder.registerCustomEditor(LocalDate.class, dateEditor); 
-	} */
 }

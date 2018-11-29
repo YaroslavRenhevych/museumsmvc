@@ -1,7 +1,5 @@
 package com.yrenh.museumsmvc.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yrenh.museumsmvc.entity.Museum;
-import com.yrenh.museumsmvc.entity.Painter;
 import com.yrenh.museumsmvc.entity.Picture;
 import com.yrenh.museumsmvc.service.MuseumService;
 import com.yrenh.museumsmvc.service.PainterService;
@@ -35,10 +31,8 @@ public class PictureController {
 	}
 	
 	@PostMapping("pictures/create")
-	public ModelAndView createPainter(@Valid @ModelAttribute("picture") Picture picture,
+	public ModelAndView createPainter(@ModelAttribute("picture") Picture picture,
 			BindingResult result, ModelMap map) {
-		
-		System.out.println("Museum: "+picture.getMuseum());
 		this.painerService.create(picture);
 		return new ModelAndView("redirect:/app/pictures/create", "picture", new Picture());
 	}

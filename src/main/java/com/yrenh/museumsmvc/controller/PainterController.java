@@ -26,6 +26,6 @@ public class PainterController {
 	public ModelAndView createPainter(@ModelAttribute Painter painter, 
 			BindingResult result, ModelMap modelMap) {
 		painterService.create(painter);
-		return new ModelAndView("createPainter", "painter", new Painter());
+		return new ModelAndView("redirect:/app/painters/create", "painter", new Painter());
 	}
 }
