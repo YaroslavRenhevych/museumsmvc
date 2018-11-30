@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 @Entity
 @Table(name = "Museum")
 public class Museum {
@@ -43,7 +45,9 @@ public class Museum {
 	public Museum(String id) {
 		this.id = Long.parseLong(id);
 	}
-	
+	public Museum(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}

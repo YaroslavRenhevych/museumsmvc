@@ -9,6 +9,27 @@
   <url>http://maven.apache.org</url>
   
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+<dependency>
+    <groupId>info.cukes</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>1.2.5</version>
+</dependency>
+  <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
+<dependency>
+    <groupId>info.cukes</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>1.2.5</version>
+    <scope>test</scope>
+</dependency>
+  <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-spring -->
+<dependency>
+    <groupId>info.cukes</groupId>
+    <artifactId>cucumber-spring</artifactId>
+    <version>1.2.5</version>
+    <scope>test</scope>
+</dependency>
+  
   <!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
 <dependency>
     <groupId>org.jboss.logging</groupId>
@@ -23,6 +44,18 @@
     <version>5.4.2.Final</version>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.9.5</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.5</version>
+</dependency>
 
 
 
@@ -89,29 +122,9 @@
 	</dependency>
 	
 	<dependency>
-	    <groupId>info.cukes</groupId>
-	    <artifactId>cucumber-java</artifactId>
-	    <version>1.2.5</version>
-	</dependency>
-	
-	<dependency>
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
 	    <version>4.12</version>
-	    <scope>test</scope>
-	</dependency>
-	
-	<dependency>
-	    <groupId>info.cukes</groupId>
-	    <artifactId>cucumber-junit</artifactId>
-	    <version>1.2.5</version>
-	    <scope>test</scope>
-	</dependency>
-	
-	<dependency>
-	    <groupId>info.cukes</groupId>
-	    <artifactId>cucumber-spring</artifactId>
-	    <version>1.2.5</version>
 	    <scope>test</scope>
 	</dependency>
 	

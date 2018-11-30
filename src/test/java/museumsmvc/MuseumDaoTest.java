@@ -40,9 +40,9 @@ public class MuseumDaoTest {
 		museum.setAddress(address);
 		museum.setFoundingDate(LocalDate.now());
 		museumDao.save(museum);
+		Long id = museum.getId();
 		
-		List<Museum> museums = museumDao.getAll();
-		Assert.assertEquals(expectedTitle, museums.get(0).getTitle());
+		Assert.assertEquals(expectedTitle, museumDao.find(id).getTitle());
 	}
 	
 	@Test(expected = InvalidDataAccessApiUsageException.class)

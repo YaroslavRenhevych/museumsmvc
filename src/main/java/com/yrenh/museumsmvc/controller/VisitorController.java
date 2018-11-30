@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yrenh.museumsmvc.entity.Visitor;
@@ -33,7 +34,8 @@ public class VisitorController {
 	
 	@PostMapping("/visitors/create")
 	public ModelAndView createVisitor(@ModelAttribute Visitor visitor,
-			BindingResult result, ModelMap map) {
+			BindingResult result, ModelMap map, @RequestParam("museums") String a) {
+		System.out.println("a museums: "+a.toString());
 		visitorService.create(visitor);
 		System.out.println("museums: "+visitor.getMuseums());
 		return new ModelAndView("redirect:/app/visitors/create", "visitor", new Visitor());
