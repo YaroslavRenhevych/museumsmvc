@@ -26,8 +26,7 @@ import museumsmvc.config.DataSourceConfig;
 
 @ContextConfiguration(classes = { WebContextConfig.class, RootContextConfig.class, DataSourceConfig.class })
 @WebAppConfiguration
-public class GetCreateMuseumPageStepDefs {
-	
+public class GetCreatePainterPageStepDefs {
 	@Autowired
 	private WebApplicationContext wac;
 	
@@ -41,26 +40,26 @@ public class GetCreateMuseumPageStepDefs {
 		ServletContext servletContext = wac.getServletContext();
 	    Assert.assertNotNull(servletContext);
 	    Assert.assertTrue(servletContext instanceof MockServletContext);
-	    Assert.assertNotNull(wac.getBean("museumController"));
+	    Assert.assertNotNull(wac.getBean("painterController"));
 	}
 	
-	@When("^the client calls \"(.*?)\" for museum creation$")
+	@When("^the client calls \"(.*?)\" for painter creation$")
 	public void the_client_issues_GET_version(String url) throws Throwable {
 	    actions = mockMvc.perform(MockMvcRequestBuilders.get(url))
 				.andDo(MockMvcResultHandlers.print());
     }
 	
-	@Then("^the client receives status code (\\d+) from create museum page$")
+	@Then("^the client receives status code of (\\d+) from create pinter page$")
 	public void the_client_receives_status_code_of(int statusCode) throws Exception {
 		actions.andExpect(MockMvcResultMatchers.status().is(statusCode));
 	}
 	
-	@And("^the client forwarded to url \"([^\"]*)\" to create museum page$")
+	@And("^the client forwarded to url \"([^\"]*)\" to create painter page$")
 	public void the_client_forwarded_to_url(String url) throws Exception {
 		actions.andExpect(MockMvcResultMatchers.forwardedUrl(url));
 	}
 	
-	@And("the client gets view with name \"(.*?)\" for create museum page")
+	@And("the client gets view with name \"(.*?)\" for create painter page")
 	public void the_client_gets_view_with_name(String name) throws Exception {
 		actions.andExpect(MockMvcResultMatchers.view().name(name));
 	}
