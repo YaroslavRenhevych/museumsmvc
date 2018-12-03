@@ -14,10 +14,10 @@ import com.yrenh.museumsmvc.service.PainterService;
 @Service
 @Transactional
 public class PainterServiceImpl implements PainterService {
-	
+
 	@Autowired
 	private PainterDao painterDao;
-	
+
 	@Override
 	public void create(Painter entity) {
 		painterDao.save(entity);

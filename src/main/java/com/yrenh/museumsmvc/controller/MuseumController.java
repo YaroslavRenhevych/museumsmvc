@@ -18,17 +18,22 @@ import com.yrenh.museumsmvc.service.MuseumService;
 public class MuseumController {
 	@Autowired
 	private MuseumService museumServie;
-	
-	@GetMapping("/museums/create")
+	private static final String CREATE_MUSEUM_VIEW_NAME = "createMuseum";
+	private static final String MUSEUM_MODEL_NAME = "museum";
+	private static final String GET_MUSEUM_CREATE_VIEW_URL = "/museums/create";
+	private static final String POST_MUSEUM_URL = "/museums/create";
+	private static final String POST_MUSEUM_REDIRECT_URL = "redirect:/app/museums/create";
+
+	@GetMapping(GET_MUSEUM_CREATE_VIEW_URL)
 	public ModelAndView showMuseumView() {
-		return new ModelAndView("createMuseum","museum", new Museum());
+		return new ModelAndView(CREATE_MUSEUM_VIEW_NAME, MUSEUM_MODEL_NAME, new Museum());
 	}
-	
-	@ResponseStatus(code=HttpStatus.CREATED)
-	@PostMapping("/museums/create")
-	public ModelAndView createMuseum(@ModelAttribute("museum")Museum museum,
-		BindingResult result, ModelMap model) {
+
+	@ResponseStatus(code = HttpStatus.CREATED)
+	@PostMapping(POST_MUSEUM_URL)
+	public ModelAndView createMuseum(@ModelAttribute(MUSEUM_MODEL_NAME) final Museum museum, BindingResult result,
+			ModelMap model) {
 		this.museumServie.create(museum);
-		return new ModelAndView("redirect:/app/museums/create", "museum", new Museum());
+		return new ModelAndView(POST_MUSEUM_REDIRECT_URL, MUSEUM_MODEL_NAME, new Museum());
 	}
 }

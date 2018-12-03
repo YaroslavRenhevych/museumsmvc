@@ -18,16 +18,21 @@ import com.yrenh.museumsmvc.service.PainterService;
 public class PainterController {
 	@Autowired
 	private PainterService painterService;
-	
-	@GetMapping("/painters/create")
+	private static final String CREATE_PAINTER_VIEW_URL = "/painters/create";
+	private static final String CREATE_PAINTER_VIEW_NAME = "createPainter";
+	private static final String PAINTER_MODEL_NAME = "painter";
+	private static final String POST_PAINTER_URL = "/painters/create";
+	private static final String POST_PAINTER_REDIRECT_URL = "redirect:/app/painters/create";
+
+	@GetMapping(CREATE_PAINTER_VIEW_URL)
 	public ModelAndView showPainterView() {
-		return new ModelAndView("createPainter", "painter", new Painter());
+		return new ModelAndView(CREATE_PAINTER_VIEW_NAME, PAINTER_MODEL_NAME, new Painter());
 	}
-	@ResponseStatus(code=HttpStatus.CREATED)
-	@PostMapping("/painters/create")
-	public ModelAndView createPainter(@ModelAttribute Painter painter, 
-			BindingResult result, ModelMap modelMap) {
+
+	@ResponseStatus(code = HttpStatus.CREATED)
+	@PostMapping(POST_PAINTER_URL)
+	public ModelAndView createPainter(@ModelAttribute Painter painter, BindingResult result, ModelMap modelMap) {
 		painterService.create(painter);
-		return new ModelAndView("redirect:/app/painters/create", "painter", new Painter());
+		return new ModelAndView(POST_PAINTER_REDIRECT_URL, PAINTER_MODEL_NAME, new Painter());
 	}
 }

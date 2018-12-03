@@ -1,8 +1,6 @@
 package com.yrenh.museumsmvc.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,9 +16,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
-@Table(name = "Visitor",
-		uniqueConstraints = @UniqueConstraint(columnNames = { "first_name", "last_name" }))
+@Table(name = "Visitor", uniqueConstraints = @UniqueConstraint(columnNames = { "first_name", "last_name" }))
 public class Visitor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,20 +31,17 @@ public class Visitor {
 	private String email;
 	@Column
 	private String phone;
-	@DateTimeFormat(iso=ISO.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
 	@ManyToMany
-	@JoinTable(
-			name = "visitor_museum",
-			joinColumns = { @JoinColumn(name = "visitor_id") },
-			inverseJoinColumns = { @JoinColumn(name = "museum_id") }
-	)
+	@JoinTable(name = "visitor_museum", joinColumns = { @JoinColumn(name = "visitor_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "museum_id") })
 	private List<Museum> museums;
-	
+
 	public Visitor() {
 	}
-	
+
 	public List<Museum> getMuseums() {
 		return museums;
 	}
@@ -58,38 +53,49 @@ public class Visitor {
 	public Long getId() {
 		return id;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public LocalDate getBirthDate() {
 		return birthDate;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
-	
+
 }

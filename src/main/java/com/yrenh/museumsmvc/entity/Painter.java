@@ -14,9 +14,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
-@Table(name = "Painter",
-		uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
+@Table(name = "Painter", uniqueConstraints = @UniqueConstraint(columnNames = { "first_name", "last_name" }))
 public class Painter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,14 +29,14 @@ public class Painter {
 	private String country;
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
-	@DateTimeFormat(iso=ISO.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@OneToMany(mappedBy = "painter")
 	private List<Picture> pictures;
-	
+
 	public Painter() {
 		super();
 	}
-	
+
 	public List<Picture> getPictures() {
 		return pictures;
 	}
@@ -84,5 +84,5 @@ public class Painter {
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
-	
+
 }

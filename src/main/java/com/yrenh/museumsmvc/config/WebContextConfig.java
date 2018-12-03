@@ -3,22 +3,22 @@ package com.yrenh.museumsmvc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
 @ComponentScan("com.yrenh.museumsmvc.controller")
 public class WebContextConfig {
-	
+	private static final String PREFIX = "/WEB-INF/view/";
+	private static final String SUFFIX = ".jsp";
+
 	@Bean
-	ViewResolver viewResoler() {
+	public ViewResolver viewResoler() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/view/");
-		resolver.setSuffix(".jsp");
+		resolver.setPrefix(PREFIX);
+		resolver.setSuffix(SUFFIX);
 		return resolver;
 	}
 }

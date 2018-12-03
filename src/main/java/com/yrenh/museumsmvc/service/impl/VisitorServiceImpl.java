@@ -17,7 +17,7 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Autowired
 	private VisitorDao visitorDao;
-	
+
 	@Override
 	public void create(Visitor entity) {
 		visitorDao.save(entity);

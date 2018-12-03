@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -19,55 +17,65 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
 @ComponentScan(basePackages = { "com.yrenh.museumsmvc.dao", "com.yrenh.museumsmvc.service" })
 @EnableTransactionManagement
 public class RootContextConfig {
-	
+	private static final String ENTITY_PACKAGE_NAME = "com.yrenh.museumsmvc.entity";
+	private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+	private static final String URL = "jdbc:mysql://localhost:3306/museumdb";
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = "root";
+	private static final String HIBERNATE_AUTO_PROPERTY_NAME = "hibernate.hbm2ddl.auto";
+	private static final String HIBERNATE_AUTO_PROPERTY_VALUE = "validate";
+	private static final String HIBERNATE_SHOW_SQL_PROPERTY_NAME = "hibernate.show_sql";
+	private static final String HIBERNATE_SHOW_SQL_PROPERTY_VALUE = "true";
+	private static final String HIBERNATE_DIALECT_PROPERTY_NAME = "hibernate.dialect";
+	private static final String HIBERNATE_DIALECT_PROPERTY_VALUE = "org.hibernate.dialect.MySQL5Dialect";
+
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired DataSource dataSource) {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired final DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
-		factory.setPackagesToScan("com.yrenh.museumsmvc.entity");
-		
+		factory.setPackagesToScan(ENTITY_PACKAGE_NAME);
+
 		JpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		factory.setJpaVendorAdapter(adapter);
-		
+
 		factory.setJpaProperties(additionalProperties());
-		
+
 		return factory;
 	}
-	
+
 	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
+	public PlatformTransactionManager transactionManager(final EntityManagerFactory factory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(factory);
 		return transactionManager;
 	}
-	
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/museumdb");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
+		dataSource.setDriverClassName(DRIVER_CLASS_NAME);
+		dataSource.setUrl(URL);
+		dataSource.setUsername(USERNAME);
+		dataSource.setPassword(PASSWORD);
 		return dataSource;
 	}
-	
+
 	@Bean
 	public Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
-		properties.setProperty("hibernate.show_sql", "true");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		properties.setProperty(HIBERNATE_AUTO_PROPERTY_NAME, HIBERNATE_AUTO_PROPERTY_VALUE);
+		properties.setProperty(HIBERNATE_SHOW_SQL_PROPERTY_NAME, HIBERNATE_SHOW_SQL_PROPERTY_VALUE);
+		properties.setProperty(HIBERNATE_DIALECT_PROPERTY_NAME, HIBERNATE_DIALECT_PROPERTY_VALUE);
 		return properties;
 	}
-	
+
 	@Bean
-	public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 }

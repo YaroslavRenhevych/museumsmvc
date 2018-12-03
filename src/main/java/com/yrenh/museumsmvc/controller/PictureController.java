@@ -24,18 +24,26 @@ public class PictureController {
 	private MuseumService museumService;
 	@Autowired
 	private PainterService painterService;
-	
-	@GetMapping("/pictures/create")
-	public ModelAndView showPainterView(ModelMap map) {
-		map.addAttribute("museumList", museumService.getAll());
-		map.addAttribute("painterList", painterService.getAll());
-		return new ModelAndView("createPicture", "picture", new Picture());
+	private static final String GET_CREATE_PAINTER_VIEW = "/pictures/create";
+	private static final String MUSEUM_LIST_ATTRIBUTE_NAME = "museumList";
+	private static final String PAINTER_LIST_ATTRIBUTE_NAME = "painterList";
+	private static final String CREATE_PICTURE_VIEW_NAME = "createPicture";
+	private static final String PICTURE_MODEL_NAME = "picture";
+	private static final String POST_PAINTER_URL = "pictures/create";
+	private static final String POST_PAINTER_REDIRECT_URL = "redirect:/app/pictures/create";
+
+	@GetMapping(GET_CREATE_PAINTER_VIEW)
+	public ModelAndView showPainterView(final ModelMap map) {
+		map.addAttribute(MUSEUM_LIST_ATTRIBUTE_NAME, museumService.getAll());
+		map.addAttribute(PAINTER_LIST_ATTRIBUTE_NAME, painterService.getAll());
+		return new ModelAndView(CREATE_PICTURE_VIEW_NAME, PICTURE_MODEL_NAME, new Picture());
 	}
-	@ResponseStatus(code=HttpStatus.CREATED)
-	@PostMapping("pictures/create")
-	public ModelAndView createPainter(@ModelAttribute("picture") Picture picture,
-			BindingResult result, ModelMap map) {
+
+	@ResponseStatus(code = HttpStatus.CREATED)
+	@PostMapping(POST_PAINTER_URL)
+	public ModelAndView createPainter(@ModelAttribute(PICTURE_MODEL_NAME) final Picture picture, final BindingResult result,
+			final ModelMap map) {
 		this.painerService.create(picture);
-		return new ModelAndView("redirect:/app/pictures/create", "picture", new Picture());
+		return new ModelAndView(POST_PAINTER_REDIRECT_URL, PICTURE_MODEL_NAME, new Picture());
 	}
 }

@@ -17,7 +17,7 @@ public class PictureServiceImpl implements PictureService {
 
 	@Autowired
 	private PictureDao pictureDao;
-	
+
 	@Override
 	public void create(Picture entity) {
 		pictureDao.save(entity);
