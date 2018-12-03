@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import org.junit.Assert;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -36,7 +35,7 @@ import museumsmvc.config.DataSourceConfig;
 
 @ContextConfiguration(classes = { WebContextConfig.class, RootContextConfig.class, DataSourceConfig.class })
 @WebAppConfiguration
-public class CreateMuseumStepDefs {
+public class CreateVisitorStepDefs {
 	@Autowired
 	private WebApplicationContext wac;
 	
@@ -55,7 +54,7 @@ public class CreateMuseumStepDefs {
 		ServletContext servletContext = wac.getServletContext();
 	    Assert.assertNotNull(servletContext);
 	    Assert.assertTrue(servletContext instanceof MockServletContext);
-	    Assert.assertNotNull(wac.getBean("museumController"));
+	    Assert.assertNotNull(wac.getBean("visitorController"));
 		
 		txStatus = txMgr.getTransaction(new DefaultTransactionDefinition());
 		
@@ -65,7 +64,7 @@ public class CreateMuseumStepDefs {
 		txMgr.rollback(txStatus);
 	}
 	
-	@When("^the client sends data about museum to \"(.*?)\"$")
+	@When("^the client sends data about visitor to \"(.*?)\"$")
 	public void the_client_sends_data(String url, DataTable params) throws Throwable {
 
 	    List<Map<String, String>> table = params.asMaps(String.class, String.class);
@@ -76,12 +75,12 @@ public class CreateMuseumStepDefs {
 
     }
 	
-	@Then("^the client gets status code of (\\d+) means that museum was created$")
+	@Then("^the client gets status code of (\\d+) means that visitor was created$")
 	public void the_client_receives_status_code_of(int statusCode) throws Exception {
 		actions.andExpect(MockMvcResultMatchers.status().is(statusCode));
 	}
 	
-	@And("^the client redirected to url \"(.*?)\" for creating new museum$")
+	@And("^the client redirected to url \"(.*?)\" for creating new visitor$")
 	public void the_client_redirected_to_url(String url) throws Exception {
 		actions.andExpect(MockMvcResultMatchers.redirectedUrl(url));
 	}

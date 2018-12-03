@@ -1,12 +1,14 @@
 package com.yrenh.museumsmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yrenh.museumsmvc.entity.Picture;
@@ -29,7 +31,7 @@ public class PictureController {
 		map.addAttribute("painterList", painterService.getAll());
 		return new ModelAndView("createPicture", "picture", new Picture());
 	}
-	
+	@ResponseStatus(code=HttpStatus.CREATED)
 	@PostMapping("pictures/create")
 	public ModelAndView createPainter(@ModelAttribute("picture") Picture picture,
 			BindingResult result, ModelMap map) {
