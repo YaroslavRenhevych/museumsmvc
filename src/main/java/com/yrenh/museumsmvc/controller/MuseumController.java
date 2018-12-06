@@ -1,18 +1,27 @@
 package com.yrenh.museumsmvc.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.yrenh.museumsmvc.entity.Museum;
 import com.yrenh.museumsmvc.service.MuseumService;
+import com.yrenh.museumsmvc.validator.MuseumValidator;
 
 @Controller
 public class MuseumController {
@@ -24,16 +33,23 @@ public class MuseumController {
 	private static final String POST_MUSEUM_URL = "/museums/create";
 	private static final String POST_MUSEUM_REDIRECT_URL = "redirect:/app/museums/create";
 
-	@GetMapping(GET_MUSEUM_CREATE_VIEW_URL)
-	public ModelAndView showMuseumView() {
+	@GetMapping("/museums/create")
+	public ModelAndView showMuseumView(ModelMap model) {
 		return new ModelAndView(CREATE_MUSEUM_VIEW_NAME, MUSEUM_MODEL_NAME, new Museum());
 	}
 
-	@ResponseStatus(code = HttpStatus.CREATED)
-	@PostMapping(POST_MUSEUM_URL)
-	public ModelAndView createMuseum(@ModelAttribute(MUSEUM_MODEL_NAME) final Museum museum, BindingResult result,
-			ModelMap model) {
+	@PostMapping("/museums/create")
+	public String createMuseum(@Validated @ModelAttribute(MUSEUM_MODEL_NAME) final Museum museum, BindingResult result,
+			ModelMap model, RedirectAttributes redirectAttributes) {
+		if(result.hasErrors()) {
+			return CREATE_MUSEUM_VIEW_NAME;
+		}
 		this.museumServie.create(museum);
-		return new ModelAndView(POST_MUSEUM_REDIRECT_URL, MUSEUM_MODEL_NAME, new Museum());
+		redirectAttributes.addFlashAttribute("success_message", "Museum was successfylly created!");
+		return "redirect:/app/museums/create";
+	}
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.addValidators(new MuseumValidator());
 	}
 }

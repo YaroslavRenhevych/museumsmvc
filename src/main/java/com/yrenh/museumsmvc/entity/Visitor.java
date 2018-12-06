@@ -39,8 +39,7 @@ public class Visitor {
 			@JoinColumn(name = "museum_id") })
 	private List<Museum> museums;
 
-	public Visitor() {
-	}
+	public Visitor() {}
 
 	public List<Museum> getMuseums() {
 		return museums;
